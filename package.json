@@ -1,17 +1,31 @@
 {
   "name": "wetube-challenge",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {},
+  "description": "The best way to watch videos.",
+  "scripts": {
+    "dev": "nodemon --exec babel-node src/init.js"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/jonghwa3471/wetube-challenge.git"
   },
-  "author": "",
+  "author": "Jonghwa Song",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/jonghwa3471/wetube-challenge/issues"
   },
-  "homepage": "https://github.com/jonghwa3471/wetube-challenge#readme"
+  "homepage": "https://github.com/jonghwa3471/wetube-challenge#readme",
+  "dependencies": {
+    "express": "^4.19.2",
+    "mongoose": "^8.3.1",
+    "morgan": "^1.10.0",
+    "pug": "^3.0.2"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.24.4",
+    "@babel/node": "^7.23.9",
+    "@babel/preset-env": "^7.24.4",
+    "@prettier/plugin-pug": "^3.0.0",
+    "nodemon": "^3.1.0"
+  }
 }
