@@ -1,0 +1,38 @@
+extends base
+
+block content
+  form.edit-profile__form(method="POST", enctype="multipart/form-data")
+    label(for="avatar") Avatar
+    input#avatar(type="file", name="avatar", accept="image/*")
+    input(
+      placeholder="Name",
+      name="name",
+      type="text",
+      required,
+      value=loggedInUser.name
+    )
+    input(
+      placeholder="Email",
+      name="email",
+      type="email",
+      required,
+      value=loggedInUser.email
+    )
+    input(
+      placeholder="Username",
+      name="username",
+      type="text",
+      required,
+      value=loggedInUser.username
+    )
+    input(
+      placeholder="Location",
+      name="location",
+      type="text",
+      required,
+      value=loggedInUser.location
+    )
+    input(type="submit", value="Update Profile")
+    if !loggedInUser.socialOnly
+      .edit-profile__password
+        a(href="change-password") Change Password &rarr;

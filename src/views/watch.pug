@@ -1,0 +1,54 @@
+extends base
+
+block content
+  #videoContainer(data-id=video._id)
+    video(src=video.fileUrl)
+    #videoControls.videoControls
+      .videoControls__play
+        span#play.videoControls__playBtn
+          i.fas.fa-play
+        .videoControls__time
+          span#currentTime 00:00
+          span &nbsp;/&nbsp;
+          span#totalTime 00:00
+      input#timeline.videoControls__timeline(
+        type="range",
+        step="1",
+        value="0",
+        min="0"
+      )
+      .videoControls__volume
+        input#volume(type="range", step="0.1", value=0.5, min="0", max="1")
+        span#mute
+          i.fas.fa-volume-up
+      div
+        span#fullScreen
+          i.fas.fa-expand
+
+  .video__data
+    p.video__title= video.title
+    small.video__owner Uploaded by&nbsp;
+      a(href=`/users/${video.owner._id}`)= video.owner.name
+    small.video__createdAt= new Date(video.createdAt).toLocaleDateString("ko-kr", { weekday: "long", year: "numeric", month: "long", day: "numeric" })
+    if String(video.owner._id) === String(loggedInUser._id)
+      br
+      a(href=`${video.id}/edit`) Edit Video &rarr;
+      br
+      a(href=`${video.id}/delete`) Delete Video &rarr;
+  if loggedIn
+    .video__add-comments
+      form#commentForm.video__comment-form
+        textarea(cols="30", rows="10", placeholder="Write a nice commment...")
+        button Add Comment
+  .video__comments
+    ul
+      each comment in video.comments.reverse()
+        li.video__comment(data-id=comment._id)
+          i.fas.fa-comment
+          span &nbsp;#{ comment.text }
+          if loggedIn && String(comment.owner._id) === String(loggedInUser._id)
+            i.deleteBtn.fas.fa-xmark
+block scripts
+  script(src="/static/js/videoPlayer.js")
+  if loggedIn
+    script(src="/static/js/commentSection.js") 
