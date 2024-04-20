@@ -1,11 +1,14 @@
 .empty__message {
   margin-bottom: 50px;
   font-size: 18px;
+  text-align: center;
 }
 .video-grid {
+  width: 100%;
   display: grid;
-  gap: 50px;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 20px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  max-width: 1200px;
 }
 
 .auth-switch {

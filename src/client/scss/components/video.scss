@@ -1,8 +1,8 @@
 // video mixin
 .video-mixin {
   .video-mixin__thumb {
-    height: 140px;
-    border-radius: 7px;
+    height: 230px;
+    border-radius: 15px;
     width: 100%;
     background-color: ivory;
   }
@@ -18,4 +18,8 @@
       font-size: 12px;
     }
   }
+}
+.data-wrapper {
+  display: flex;
+  align-items: center;
 }

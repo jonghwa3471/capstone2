@@ -3,8 +3,14 @@ mixin video(video)
     .video-mixin__thumb(
       style=`background-image:url(${video.thumbUrl});background-size:cover;background-position:center;`
     )
-    .video-mixin__data
-      span.video-mixin__title= video.title
-      .video-mixin__meta
-        span #{ video.owner.name } •&nbsp;
-        span #{ video.meta.views }회
+    .data-wrapper
+      .video-mixin__profile
+        if !loggedInUser.avatarUrl
+          span.header__icon 😃
+        else
+          img.header__avatar(src=loggedInUser.avatarUrl)
+      .video-mixin__data
+        span.video-mixin__title= video.title
+        .video-mixin__meta
+          span #{ video.owner.name } •&nbsp;
+          span #{ video.meta.views }회

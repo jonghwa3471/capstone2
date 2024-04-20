@@ -8,8 +8,9 @@ block content
     else
       img.avatar(src=user.avatarUrl)
     h3= user.name
-  .video-grid
-    each video in user.videos
-      +video(video)
-    else
-      span.empty__message No videos found
+  .profile-wrapper
+    .video-grid
+      each video in user.videos
+        +video(video)
+      else
+        span.empty__message No videos found

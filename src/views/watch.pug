@@ -38,8 +38,8 @@ block content
   if loggedIn
     .video__add-comments
       form#commentForm.video__comment-form
-        textarea(cols="30", rows="10", placeholder="Write a nice commment...")
-        button Add Comment
+        textarea(cols="30", rows="10", placeholder="댓글 추가...")
+        button 댓글
   .video__comments
     ul
       each comment in video.comments.reverse()

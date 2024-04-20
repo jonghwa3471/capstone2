@@ -1,11 +1,15 @@
 header
   a.header__logo(href="/")
-    i.fab.fa-youtube
+    i.fa-solid.fa-bars
+    i.fa-brands.fa-youtube
+    span#youtubeSpan Premium
+
+  form.search__form(method="GET", action="search")
+    input(placeholder="검색", name="keyword", type="text")
+    button
+      i.fas.fa-search
   nav
     ul
-      li
-        a(href="/search")
-          i.fas.fa-search
       if loggedIn
         li
           a(href="/videos/upload") Upload Video

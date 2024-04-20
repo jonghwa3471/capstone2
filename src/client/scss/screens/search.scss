@@ -1,8 +1,9 @@
 .search__form {
-  margin-bottom: 60px;
   display: flex;
   position: relative;
   align-items: center;
+  justify-content: center;
+  width: 33%;
   input {
     all: unset;
     padding: 15px 20px;

@@ -122,7 +122,7 @@ export const search = async (req, res) => {
       },
     }).populate("owner");
   }
-  return res.render("search", { pageTitle: "Search", videos });
+  return res.render("home", { pageTitle: "Search", videos });
 };
 
 export const registerView = async (req, res) => {

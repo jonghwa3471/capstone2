@@ -2,8 +2,92 @@ extends base
 include mixins/video
 
 block content
-  .video-grid
-    each video in videos
-      +video(video)
-    else
-      span.empty__message No videos found
+  .main-container
+    .menu-bar
+      .menu.home
+        .menu__icon
+          i.fa-solid.fa-house
+        .menu__text
+          span 홈
+      .menu
+        .menu__icon
+          i.fa-solid.fa-bolt
+        .menu__text
+          span Shorts
+      .menu
+        .menu__icon
+          i.fa-solid.fa-folder-plus
+        .menu__text
+          span 구독
+      .menu
+        .menu__icon
+          i.fa-regular.fa-circle-play
+        .menu__text
+          span YouTube Music
+      hr
+      .menu.menu-me
+        .menu__text
+          span 나
+        .menu__icon
+          i.fa-solid.fa-angle-right
+      .menu
+        .menu__icon
+          i.fa-solid.fa-image-portrait
+        .menu__text
+          span 내 채널
+      .menu
+        .menu__icon
+          i.fa-solid.fa-arrow-rotate-left
+        .menu__text
+          span 시청 기록
+      .menu
+        .menu__icon
+          i.fa-solid.fa-list-check
+        .menu__text
+          span 재생 목록
+      .menu
+        .menu__icon
+          i.fa-brands.fa-square-youtube
+        .menu__text
+          span 내 동영상
+      .menu
+        .menu__icon
+          i.fa-regular.fa-clock
+        .menu__text
+          span 나중에 볼 동영상
+      .menu
+        .menu__icon
+          i.fa-regular.fa-thumbs-up
+        .menu__text
+          span 좋아요 표시한 동영상
+      .menu
+        .menu__icon
+          i.fa-solid.fa-download
+        .menu__text
+          span 오프라인 저장 동영상
+      hr
+      .menu.menu-me
+        .menu__text
+          span 구독
+      a.link(href="https://www.youtube.com/@nomadcoders", target="_blank") 
+        .menu
+          .menu__icon
+            img(
+              src="https://yt3.googleusercontent.com/ytc/AIdro_kZGbEvWmB_2CZMcZVcCpjFsiQNVQZEehF8jinP6zlFJ7s=s176-c-k-c0x00ffffff-no-rj"
+            )
+          .menu__text
+            span 노마드 코더 Nomad...
+      a.link(href="https://www.youtube.com/@avicii", target="_blank") 
+        .menu
+          .menu__icon
+            img(
+              src="https://yt3.googleusercontent.com/AeDgtFdN1GfSkCNN2PL1sOlshziIB25kCBR3QIZnMWXLD2WV2YuwEYzMdiaTGJrHrZQ3r9U4dQ=s176-c-k-c0x00ffffff-no-rj"
+            )
+          .menu__text
+            span Avicii
+
+    .video-grid
+      each video in videos
+        +video(video)
+      else
+        span.empty__message No videos found
