@@ -5,10 +5,7 @@ mixin video(video)
     )
     .data-wrapper
       .video-mixin__profile
-        if !loggedInUser.avatarUrl
-          span.header__icon 😃
-        else
-          img.header__avatar(src=video.owner.avatarUrl)
+        img.header__avatar(src=video.owner.avatarUrl)
       .video-mixin__data
         span.video-mixin__title= video.title
         .video-mixin__meta
