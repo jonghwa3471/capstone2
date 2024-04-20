@@ -14,7 +14,7 @@ const videoControls = document.getElementById("videoControls");
 
 let controlsTimeout = null;
 let controlsMovementTimeout = null;
-let volumeValue = 0.5;
+let volumeValue = 0.1;
 video.volume = volumeValue;
 
 let videoPlayStatus = false;
@@ -123,11 +123,11 @@ const handleMouseMove = () => {
     controlsMovementTimeout = null;
   }
   videoControls.classList.add("showing");
-  controlsMovementTimeout = setTimeout(hideControls, 1000);
+  controlsMovementTimeout = setTimeout(hideControls, 500);
 };
 
 const handleMouseLeave = () => {
-  controlsTimeout = setTimeout(hideControls, 1000);
+  controlsTimeout = setTimeout(hideControls, 500);
 };
 
 const handleSpaceBarPlay = (event) => {
@@ -137,7 +137,7 @@ const handleSpaceBarPlay = (event) => {
       clearTimeout(controlsTimeout);
       controlsTimeout = null;
     }
-    controlsTimeout = setTimeout(hideControls, 1000);
+    controlsTimeout = setTimeout(hideControls, 500);
     if (video.paused) {
       video.play();
     } else {
