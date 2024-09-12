@@ -1,5 +1,5 @@
 # Wetube Challenge
-Wetube Challenge
+Youtube Clone Challenge
 
 ## 🔗 Demo
 https://wetube-challenge.onrender.com/
