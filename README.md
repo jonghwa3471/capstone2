@@ -5,7 +5,7 @@ Wetube Challenge
 https://wetube-challenge.onrender.com/
 
 ## 🖥 Preview
-<img src="preview_wetube_challenge"/>
+<img src="preview_wetube_challenge.png"/>
 
 ## 🔥 Stack
 
