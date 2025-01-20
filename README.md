@@ -2,7 +2,7 @@
 Youtube Clone Challenge
 
 ## 🔗 Demo
-https://wetube-challenge.onrender.com/
+https://wetube-challenge-j2yonghwa.fly.dev/
 
 ## 🖥 Preview
 <img src="preview_wetube_challenge.png"/>
