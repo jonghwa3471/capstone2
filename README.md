@@ -28,7 +28,7 @@ https://wetube-challenge-j2yonghwa.fly.dev/
 
 ### Deploy
 
-<img height='25' src="https://img.shields.io/badge/Heroku-430098?style=flat-square&logo=Heroku&logoColor=white"/>
+<img height='25' src="https://img.shields.io/badge/Fly.io-430098?style=flat-square&logo=flydotio&logoColor=white"/>
 
 
 ## ✅ Packages
