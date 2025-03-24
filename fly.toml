@@ -1,10 +1,10 @@
-# fly.toml app configuration file generated for wetube-challenge-j2yonghwa on 2025-01-20T17:01:31+09:00
+# fly.toml app configuration file generated for capstone2 on 2025-03-24T17:08:29+09:00
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
 
-app = 'wetube-challenge-j2yonghwa'
-primary_region = 'nrt'
+app = 'capstone2'
+primary_region = 'sjc'
 
 [build]
 
