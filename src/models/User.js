@@ -5,10 +5,9 @@ const userSchema = new mongoose.Schema({
   email: { type: String, required: true, unique: true },
   avatarUrl: String,
   socialOnly: { type: Boolean, default: false },
-  username: { type: String, required: true, unique: true },
+  id: { type: String, required: true, unique: true },
   password: { type: String },
-  name: { type: String, required: true },
-  location: String,
+  nickname: { type: String, required: true },
   comments: [{ type: mongoose.Schema.Types.ObjectId, ref: "Comment" }],
   videos: [{ type: mongoose.Schema.Types.ObjectId, ref: "Video" }],
 });

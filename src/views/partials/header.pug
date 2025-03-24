@@ -12,11 +12,11 @@ header
     ul
       if loggedIn
         li
-          a(href="/videos/upload") Upload Video
+          a(href="/videos/upload") 글쓰기
         li
-          a(href="/users/edit") Edit Profile
+          a(href="/users/edit") 프로필 수정
         li
-          a(href="/users/logout") Log Out
+          a(href="/users/logout") 로그아웃
         li
           a(href=`/users/${loggedInUser._id}`)
             if !loggedInUser.avatarUrl
@@ -25,6 +25,6 @@ header
               img.header__avatar(src=loggedInUser.avatarUrl)
       else
         li
-          a(href="/login") Login
+          a(href="/login") 로그인
         li
-          a.header__btn(href="/join") Join
+          a.header__btn(href="/join") 회원가입

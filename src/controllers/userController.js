@@ -1,30 +1,30 @@
 import User from "../models/User";
 import bcrypt from "bcrypt";
 
-export const getJoin = (req, res) => res.render("join", { pageTitle: "Join" });
+export const getJoin = (req, res) =>
+  res.render("join", { pageTitle: "회원가입" });
 export const postJoin = async (req, res) => {
-  const { name, username, email, password, password2, location } = req.body;
-  const pageTitle = "Join";
+  const { nickname, email, id, password, password2 } = req.body;
+  const pageTitle = "회원가입";
   if (password !== password2) {
     return res.status(400).render("join", {
       pageTitle,
-      errorMessage: "Password confirmation does not match",
+      errorMessage: "비밀번호가 일치하지 않습니다.",
     });
   }
-  const exists = await User.exists({ $or: [{ username }, { email }] });
+  const exists = await User.exists({ $or: [{ id }, { email }] });
   if (exists) {
     return res.status(400).render("join", {
       pageTitle,
-      errorMessage: "This username/email is already taken.",
+      errorMessage: "이미 존재하는 아이디 / 이메일입니다.",
     });
   }
   try {
     await User.create({
-      name,
-      username,
+      nickname,
       email,
+      id,
       password,
-      location,
     });
     return res.redirect("/login");
   } catch (error) {
@@ -35,28 +35,28 @@ export const postJoin = async (req, res) => {
   }
 };
 export const getLogin = (req, res) =>
-  res.render("login", { pageTitle: "Login" });
+  res.render("login", { pageTitle: "로그인" });
 
 export const postLogin = async (req, res) => {
-  const { username, password } = req.body;
-  const pageTitle = "Login";
-  const user = await User.findOne({ username, socialOnly: false });
+  const { id, password } = req.body;
+  const pageTitle = "로그인";
+  const user = await User.findOne({ id, socialOnly: false });
   if (!user) {
     return res.status(400).render("login", {
       pageTitle,
-      errorMessage: "An account with this username does not exists.",
+      errorMessage: "존재하지 않는 아이디입니다.",
     });
   }
   const ok = await bcrypt.compare(password, user.password);
   if (!ok) {
     return res.status(400).render("login", {
       pageTitle,
-      errorMessage: "Wrong password",
+      errorMessage: "비밀번호를 정확히 입력해 주세요.",
     });
   }
   req.session.loggedIn = true;
   req.session.user = user;
-  req.flash("success", "Logged In");
+  req.flash("success", "로그인 되었습니다.");
   return res.redirect("/");
 };
 
@@ -118,16 +118,15 @@ export const finishGithubLogin = async (req, res) => {
       user = await User.create({
         avatarUrl: userData.avatar_url,
         name: userData.name,
-        username: userData.login,
+        id: userData.login,
         email: emailObj.email,
         password: "",
         socialOnly: true,
-        location: userData.location,
       });
     }
     req.session.loggedIn = true;
     req.session.user = user;
-    req.flash("success", "Logged In");
+    req.flash("success", "로그인 되었습니다.");
     return res.redirect("/");
   } else {
     return res.redirect("/login");
@@ -136,18 +135,18 @@ export const finishGithubLogin = async (req, res) => {
 export const logout = (req, res) => {
   req.session.user = null;
   req.session.loggedIn = false;
-  req.flash("info", "Logged Out");
+  req.flash("info", "로그아웃 되었습니다.");
   return res.redirect("/");
 };
 export const getEdit = (req, res) => {
-  return res.render("edit-profile", { pageTitle: "Edit Profile" });
+  return res.render("edit-profile", { pageTitle: "프로필 수정" });
 };
 export const postEdit = async (req, res) => {
   const {
     session: {
-      user: { _id, avatarUrl, email: sessionEmail, username: sessionUsername },
+      user: { _id, avatarUrl, email: sessionEmail, id: sessionId },
     },
-    body: { name, email, username, location },
+    body: { nickname, email, id },
     file,
   } = req;
 
@@ -156,16 +155,16 @@ export const postEdit = async (req, res) => {
   if (email !== sessionEmail) {
     searchParam.push({ email });
   }
-  if (username !== sessionUsername) {
-    searchParam.push({ username });
+  if (id !== sessionId) {
+    searchParam.push({ id });
   }
 
   if (searchParam.length > 0) {
     const foundUser = await User.findOne({ $or: searchParam });
     if (foundUser) {
       return res.status(400).render("edit-profile", {
-        pageTitle: "Edit Profile",
-        errorMessage: "This username/email is already taken.",
+        pageTitle: "프로필 수정",
+        errorMessage: "이미 존재하는 아이디 / 이메일입니다.",
       });
     }
   }
@@ -174,10 +173,9 @@ export const postEdit = async (req, res) => {
     _id,
     {
       avatarUrl: file ? (isRender ? file.location : file.path) : avatarUrl,
-      name,
+      nickname,
       email,
-      username,
-      location,
+      id,
     },
     { new: true }
   );
@@ -187,10 +185,10 @@ export const postEdit = async (req, res) => {
 
 export const getChangePassword = (req, res) => {
   if (req.session.user.socialOnly === true) {
-    req.flash("error", "Can't change password.");
+    req.flash("error", "Github 로그인 계정은 비밀번호를 변경할 수 없습니다.");
     return res.redirect("/");
   }
-  return res.render("users/change-password", { pageTitle: "Change Password" });
+  return res.render("users/change-password", { pageTitle: "비밀번호 변경" });
 };
 export const postChangePassword = async (req, res) => {
   const {
@@ -203,20 +201,20 @@ export const postChangePassword = async (req, res) => {
   const ok = await bcrypt.compare(oldPassword, user.password);
   if (!ok) {
     return res.status(400).render("users/change-password", {
-      pageTitle: "Change Password",
-      errorMessage: "The current password is incorrect",
+      pageTitle: "비밀번호 변경",
+      errorMessage: "현재 비밀번호가 일치하지 않습니다.",
     });
   }
   if (newPassword !== newPasswordConfirmation) {
     return res.status(400).render("users/change-password", {
-      pageTitle: "Change Password",
-      errorMessage: "The password does not match the confirmation",
+      pageTitle: "비밀번호 변경",
+      errorMessage: "비밀번호가 일치하지 않습니다.",
     });
   }
 
   user.password = newPassword;
   await user.save();
-  req.flash("info", "Password updated");
+  req.flash("info", "비밀번호가 업데이트 되었습니다.");
   return res.redirect("/users/logout");
 };
 
@@ -230,7 +228,7 @@ export const see = async (req, res) => {
     },
   });
   if (!user) {
-    return res.status(404).render("404", { pageTitle: "User not found." });
+    return res.status(404).render("404", { pageTitle: "존재하지 않는 유저" });
   }
   return res.render("users/profile", {
     pageTitle: user.name,
