@@ -9,7 +9,7 @@ export const avatarDeleteMiddleware = async (req, res, next) => {
   }
   const key = `images/${req.session.user.avatarUrl.split("/")[4]}`;
   const params = {
-    Bucket: "wetube-challengee",
+    Bucket: "capstone2-2025",
     Key: key,
   };
   try {
@@ -34,7 +34,7 @@ const isRender = process.env.NODE_ENV === "production";
 
 const s3ImageUploader = multerS3({
   s3: s3,
-  bucket: "wetube-challengee",
+  bucket: "capstone2-2025",
   acl: "public-read",
   key: (req, file, cb) => {
     cb(null, "images/" + file.originalname);
@@ -43,7 +43,7 @@ const s3ImageUploader = multerS3({
 
 const s3VideoUploader = multerS3({
   s3: s3,
-  bucket: "wetube-challengee",
+  bucket: "capstone2-2025",
   acl: "public-read",
   key: (req, file, cb) => {
     cb(null, "videos/" + file.originalname);
@@ -52,7 +52,7 @@ const s3VideoUploader = multerS3({
 
 export const localsMiddleware = (req, res, next) => {
   res.locals.loggedIn = Boolean(req.session.loggedIn);
-  res.locals.siteName = "Wetube-challenge";
+  res.locals.siteName = "capstone2-2025";
   res.locals.loggedInUser = req.session.user || {};
   res.locals.isRender = isRender;
   next();
