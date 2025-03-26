@@ -1,8 +1,11 @@
 .main-container {
   display: grid;
-  grid-template-columns: 280px 1fr;
+  grid-template-columns: 1fr;
+  justify-items: center;
   color: white;
   font-size: 18px;
+  padding: 20px;
+  min-height: 500px;
   .menu-bar {
     padding: 20px;
     display: flex;

@@ -5,7 +5,8 @@ block content
     .video__img(
       style=`background-image:url(/${video.thumbUrl});background-size:cover;background-position:center;`
     )
-    p.video__writing= video.writing
+    .video_writing_container
+      p.video__writing= video.writing
   .video__data
     p.video__title= video.title
     small.video__owner 작성자:&nbsp;

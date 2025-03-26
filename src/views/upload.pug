@@ -7,8 +7,8 @@ block content
     label(for="thumb") 이미지 업로드
     input#thumb(type="file", accept="image/*", required, name="thumb")
     input(placeholder="제목", required, type="text", name="title", maxlength=80)
-    input(placeholder="해쉬태그", required, type="text", name="hashtags")
-    textarea(placeholder="내용을 입력하세요.", name="writing") 
+    input(placeholder="태그(쉼표로 구분)", required, type="text", name="hashtags")
+    textarea.writing(placeholder="내용을 입력하세요.", name="writing")
     input(type="submit", value="등록")
 
 block scripts
