@@ -3,20 +3,13 @@ extends base
 block content
   h4 Update Video
   form(method="POST")
-    input(name="title", placeholder="Video Title", value=video.title, required)
-    input(
-      name="description",
-      minlength=2,
-      placeholder="Description",
-      type="text",
-      value=video.description,
-      required
-    )
+    input(name="title", placeholder="글 제목", value=video.title, required)
+    textarea(placeholder="내용을 입력하세요.", name="writing")
     input(
       name="hashtags",
-      placeholder="Hashtags, separated by comma.",
+      placeholder="해쉬태그",
       type="text",
       value=video.hashtags.join(),
       required
     )
-    input(value="Save", type="submit")
+    input(value="수정", type="submit")

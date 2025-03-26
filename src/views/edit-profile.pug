@@ -2,37 +2,30 @@ extends base
 
 block content
   form.edit-profile__form(method="POST", enctype="multipart/form-data")
-    label(for="avatar") Avatar
+    label(for="avatar") 프로필 사진
     input#avatar(type="file", name="avatar", accept="image/*")
     input(
-      placeholder="Name",
-      name="name",
+      placeholder="닉네임",
+      name="nickname",
       type="text",
       required,
-      value=loggedInUser.name
+      value=loggedInUser.nickname
     )
     input(
-      placeholder="Email",
+      placeholder="이메일",
       name="email",
       type="email",
       required,
       value=loggedInUser.email
     )
     input(
-      placeholder="Username",
-      name="username",
+      placeholder="아이디",
+      name="id",
       type="text",
       required,
-      value=loggedInUser.username
+      value=loggedInUser.id
     )
-    input(
-      placeholder="Location",
-      name="location",
-      type="text",
-      required,
-      value=loggedInUser.location
-    )
-    input(type="submit", value="Update Profile")
+    input(type="submit", value="프로필 수정")
     if !loggedInUser.socialOnly
       .edit-profile__password
-        a(href="change-password") Change Password &rarr;
+        a(href="change-password") 비밀번호 변경하기 &rarr;

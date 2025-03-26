@@ -2,39 +2,20 @@ extends base
 
 block content
   #videoContainer(data-id=video._id)
-    video(src=video.fileUrl)
-    #videoControls.videoControls
-      .videoControls__play
-        span#play.videoControls__playBtn
-          i.fas.fa-play
-        .videoControls__time
-          span#currentTime 00:00
-          span &nbsp;/&nbsp;
-          span#totalTime 00:00
-      input#timeline.videoControls__timeline(
-        type="range",
-        step="1",
-        value="0",
-        min="0"
-      )
-      .videoControls__volume
-        input#volume(type="range", step="0.1", value=0.1, min="0", max="1")
-        span#mute
-          i.fas.fa-volume-up
-      div
-        span#fullScreen
-          i.fas.fa-expand
-
+    .video__img(
+      style=`background-image:url(/${video.thumbUrl});background-size:cover;background-position:center;`
+    )
+    p.video__writing= video.writing
   .video__data
     p.video__title= video.title
-    small.video__owner Uploaded by&nbsp;
-      a(href=`/users/${video.owner._id}`)= video.owner.name
+    small.video__owner 작성자:&nbsp;
+      a(href=`/users/${video.owner._id}`)= video.owner.nickname
     small.video__createdAt= new Date(video.createdAt).toLocaleDateString("ko-kr", { weekday: "long", year: "numeric", month: "long", day: "numeric" })
     if String(video.owner._id) === String(loggedInUser._id)
       br
-      a(href=`${video.id}/edit`) Edit Video &rarr;
+      a(href=`${video.id}/edit`) 글 수정 &rarr;
       br
-      a(href=`${video.id}/delete`) Delete Video &rarr;
+      a(href=`${video.id}/delete`) 글 삭제 &rarr;
   if loggedIn
     .video__add-comments
       form#commentForm.video__comment-form

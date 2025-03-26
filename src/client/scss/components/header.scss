@@ -56,4 +56,10 @@ header {
   .header__icon {
     font-size: 40px;
   }
+  .header__link {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2px;
+  }
 }

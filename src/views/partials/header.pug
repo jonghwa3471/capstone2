@@ -1,8 +1,9 @@
 header
-  a.header__logo(href="/")
+  .header__logo
     i.fa-solid.fa-bars
-    i.fa-brands.fa-youtube
-    span#youtubeSpan Premium
+    a.header__link(href="/")
+      i.fa-brands.fa-youtube
+      span#youtubeSpan Premium
 
   form.search__form(method="GET", action="search")
     input(placeholder="검색", name="keyword", type="text")

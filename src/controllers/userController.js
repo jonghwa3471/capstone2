@@ -3,6 +3,7 @@ import bcrypt from "bcrypt";
 
 export const getJoin = (req, res) =>
   res.render("join", { pageTitle: "회원가입" });
+
 export const postJoin = async (req, res) => {
   const { nickname, email, id, password, password2 } = req.body;
   const pageTitle = "회원가입";
@@ -34,6 +35,7 @@ export const postJoin = async (req, res) => {
     });
   }
 };
+
 export const getLogin = (req, res) =>
   res.render("login", { pageTitle: "로그인" });
 
@@ -117,7 +119,7 @@ export const finishGithubLogin = async (req, res) => {
     if (!user) {
       user = await User.create({
         avatarUrl: userData.avatar_url,
-        name: userData.name,
+        nickname: userData.name,
         id: userData.login,
         email: emailObj.email,
         password: "",
@@ -231,7 +233,7 @@ export const see = async (req, res) => {
     return res.status(404).render("404", { pageTitle: "존재하지 않는 유저" });
   }
   return res.render("users/profile", {
-    pageTitle: user.name,
+    pageTitle: user.nickname,
     user,
   });
 };
