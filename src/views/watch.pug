@@ -26,8 +26,10 @@ block content
     ul
       each comment in video.comments.reverse()
         li.video__comment(data-id=comment._id)
-          i.fas.fa-comment
-          span &nbsp;#{ comment.text }
+          h6.comment_date= new Date(comment.createdAt).toLocaleDateString("ko-kr", { weekday: "long", year: "numeric", month: "long", day: "numeric" })
+          h4= comment.nickname
+          br
+          span #{ comment.text }
           if loggedIn && String(comment.owner._id) === String(loggedInUser._id)
             i.deleteBtn.fas.fa-xmark
 block scripts

@@ -2,7 +2,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
 
 header {
-  padding: 20px;
+  padding: 20px 50px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -37,6 +37,12 @@ header {
       font-size: 14px;
       font-weight: 600;
       text-transform: uppercase;
+      a {
+        transition: opacity 0.2s ease-in-out;
+        &:hover {
+          opacity: 0.5;
+        }
+      }
     }
     i {
       font-size: 16px;

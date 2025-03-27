@@ -30,10 +30,20 @@
   .video__comment {
     position: relative;
     padding: 10px;
-    border-radius: 9999px;
-    background-color: white;
-    color: black;
+    border-radius: 10px;
+    background-color: whitesmoke;
+    color: rgba(0, 0, 0, 0.8);
     margin-bottom: 10px;
+    .comment_date {
+      font-size: 12px;
+      color: rgba(0, 0, 0, 0.5);
+      margin-bottom: 5px;
+    }
+    h4 {
+      color: black;
+      font-weight: 700;
+      font-size: 14px;
+    }
     .fa-xmark {
       color: $red;
       position: absolute;

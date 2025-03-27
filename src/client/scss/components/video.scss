@@ -10,19 +10,16 @@
   .video-mixin__data {
     padding: 0px 15px;
     .video-mixin__title {
-      font-size: 18px;
-      display: block;
-      margin-top: 10px;
-    }
-    .video-mixin__meta {
-      margin-top: 5px;
-      font-size: 12px;
+      display: flex;
+      align-items: center;
+      font-size: 16px;
     }
   }
 }
 .data-wrapper {
   display: flex;
   align-items: center;
+  margin-top: 10px;
   img {
     border-radius: 50%;
     width: 30px;
