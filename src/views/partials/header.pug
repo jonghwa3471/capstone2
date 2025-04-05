@@ -5,7 +5,7 @@ header
       i.fa-brands.fa-youtube
       span#youtubeSpan Premium
 
-  form.search__form(method="GET", action="search")
+  form.search__form.header__search(method="GET", action="search")
     input(placeholder="검색", name="keyword", type="text")
     button
       i.fas.fa-search
@@ -26,6 +26,6 @@ header
               img.header__avatar(src=`/${loggedInUser.avatarUrl}`)
       else
         li
-          a(href="/login") 로그인
+          a.header__login(href="/login") 로그인
         li
           a.header__btn(href="/join") 회원가입
