@@ -23,8 +23,8 @@ export const home = async (req, res) => {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
 
-      const data = await response.json(); // 또는 .text() 사용 가능
-      jobInfo = data; // 사라민 API 응답 처리
+      const data = await response.json();
+      jobInfo = data;
     } catch (error) {
       console.error("API 요청 중 오류 발생:", error.message);
     }
