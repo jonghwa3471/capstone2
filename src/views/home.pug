@@ -6,5 +6,12 @@ block content
     .video-grid
       each video in videos
         +video(video)
+  hr(
+    style="border: 5px solid rgba(0, 0, 0, 0.2); width: 90%; border-radius: 20px"
+  )
+  .main-container
+    .video-grid
+      each video in videos
+        +video(video)
       else
         span.empty__message No videos found
