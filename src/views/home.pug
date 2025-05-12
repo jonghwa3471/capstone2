@@ -6,6 +6,8 @@ block content
     .video-grid
       each video in videos
         +video(video)
+      else
+        span.empty__message 게시글이 존재하지 않습니다.
   hr(
     style="border: 5px solid rgba(0, 0, 0, 0.2); width: 90%; border-radius: 20px"
   )
@@ -14,4 +16,4 @@ block content
       each video in videos
         +video(video)
       else
-        span.empty__message No videos found
+        span.empty__message 모집공고가 존재하지 않습니다.
