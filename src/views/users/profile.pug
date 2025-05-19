@@ -6,11 +6,11 @@ block content
     if !user.avatarUrl
       span.header__icon 😃
     else
-      img.avatar(src=`/${user.avatarUrl}`)
+      img.avatar(src=`${user.avatarUrl}`)
     h3= user.name
   .profile-wrapper
     .video-grid
       each video in user.videos
         +video(video)
       else
-        span.empty__message No videos found
+        span.empty__message 게시글이 존재하지 않습니다.

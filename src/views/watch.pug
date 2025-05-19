@@ -3,7 +3,7 @@ extends base
 block content
   #videoContainer(data-id=video._id)
     .video__img(
-      style=`background-image:url(/${video.thumbUrl});background-size:cover;background-position:center;`
+      style=`background-image:url(${video.thumbUrl});background-size:cover;background-position:center;`
     )
     .video_writing_container
       p.video__writing= video.writing

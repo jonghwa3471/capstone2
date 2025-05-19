@@ -1,12 +1,12 @@
 mixin video(video)
   a.video-mixin(href=`/videos/${video.id}`)
     .video-mixin__thumb(
-      style=`background-image:url(/${video.thumbUrl});background-size:cover;background-position:center;`
+      style=`background-image:url(${video.thumbUrl});background-size:cover;background-position:center;`
     )
     .data-wrapper
       .video-mixin__profile
         if video.owner.avatarUrl
-          img.header__avatar(src=`/${video.owner.avatarUrl}`)
+          img.header__avatar(src=`${video.owner.avatarUrl}`)
         else
           span.header__icon 😃
       .video-mixin__data

@@ -22,7 +22,7 @@ header
             if !loggedInUser.avatarUrl
               span.header__icon 😃
             else
-              img.header__avatar(src=`/${loggedInUser.avatarUrl}`)
+              img.header__avatar(src=`${loggedInUser.avatarUrl}`)
       else
         li
           a.header__login(href="/login") 로그인

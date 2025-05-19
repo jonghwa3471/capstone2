@@ -25,4 +25,9 @@
     border-radius: 50%;
     width: 30px;
   }
+  .video-mixin__views {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 }
