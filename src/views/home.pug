@@ -3,6 +3,10 @@ include mixins/video
 
 block content
   .main-container
+    h1(
+      style="display: flex; justify-content: center; align-items: center; font-size: 42px; border: 1px solid #1c4ed8; width: 50px; height: 80px; background-color: #1c4ed8; border-radius: 15px; opacity: 0.9; justify-self: start"
+    )
+      i.fa-solid.fa-person-praying
     .video-grid
       each noWorkerVideo in noWorkerVideos
         +video(noWorkerVideo)
@@ -10,6 +14,10 @@ block content
         span.empty__message 게시글이 존재하지 않습니다.
   hr(style="border: 5px solid #1c4ed8; width: 90%")
   .main-container
+    h1(
+      style="display: flex; justify-content: center; align-items: center; font-size: 42px; border: 1px solid #1c4ed8; width: 50px; height: 80px; background-color: #1c4ed8; border-radius: 15px; opacity: 0.9; justify-self: start"
+    )
+      i.fa-solid.fa-user-tie
     .video-grid
       each workerVideo in workerVideos
         +video(workerVideo)
