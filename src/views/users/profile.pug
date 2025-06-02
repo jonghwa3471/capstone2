@@ -7,7 +7,7 @@ block content
       span.header__icon 😃
     else
       img.avatar(src=`${user.avatarUrl}`)
-    h3= user.name
+    h3(style="font-weight: 700")= user.nickname
   .profile-wrapper
     .video-grid
       each video in user.videos

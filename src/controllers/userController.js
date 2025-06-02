@@ -8,6 +8,7 @@ export const postJoin = async (req, res) => {
   const { nickname, email, id, password, password2 } = req.body;
   const pageTitle = "회원가입";
   if (password !== password2) {
+    req.flash("error", "비밀번호가 일치하지 않습니다.");
     return res.status(400).render("join", {
       pageTitle,
       errorMessage: "비밀번호가 일치하지 않습니다.",
@@ -15,6 +16,7 @@ export const postJoin = async (req, res) => {
   }
   const exists = await User.exists({ $or: [{ id }, { email }] });
   if (exists) {
+    req.flash("error", "이미 존재하는 아이디 / 이메일입니다.");
     return res.status(400).render("join", {
       pageTitle,
       errorMessage: "이미 존재하는 아이디 / 이메일입니다.",
@@ -29,6 +31,7 @@ export const postJoin = async (req, res) => {
     });
     return res.redirect("/login");
   } catch (error) {
+    req.flash("error", error.message);
     return res.status(400).render("join", {
       pageTitle,
       errorMessage: error.message,
@@ -44,6 +47,7 @@ export const postLogin = async (req, res) => {
   const pageTitle = "로그인";
   const user = await User.findOne({ id, socialOnly: false });
   if (!user) {
+    req.flash("error", "존재하지 않는 아이디입니다.");
     return res.status(400).render("login", {
       pageTitle,
       errorMessage: "존재하지 않는 아이디입니다.",
@@ -51,6 +55,7 @@ export const postLogin = async (req, res) => {
   }
   const ok = await bcrypt.compare(password, user.password);
   if (!ok) {
+    req.flash("error", "비밀번호를 정확히 입력해 주세요.");
     return res.status(400).render("login", {
       pageTitle,
       errorMessage: "비밀번호를 정확히 입력해 주세요.",
@@ -164,6 +169,7 @@ export const postEdit = async (req, res) => {
   if (searchParam.length > 0) {
     const foundUser = await User.findOne({ $or: searchParam });
     if (foundUser) {
+      req.flash("error", "이미 존재하는 아이디 / 이메일입니다.");
       return res.status(400).render("edit-profile", {
         pageTitle: "프로필 수정",
         errorMessage: "이미 존재하는 아이디 / 이메일입니다.",
@@ -202,12 +208,14 @@ export const postChangePassword = async (req, res) => {
   const user = await User.findById(_id);
   const ok = await bcrypt.compare(oldPassword, user.password);
   if (!ok) {
+    req.flash("error", "현재 비밀번호가 일치하지 않습니다.");
     return res.status(400).render("users/change-password", {
       pageTitle: "비밀번호 변경",
       errorMessage: "현재 비밀번호가 일치하지 않습니다.",
     });
   }
   if (newPassword !== newPasswordConfirmation) {
+    req.flash("error", "비밀번호가 일치하지 않습니다.");
     return res.status(400).render("users/change-password", {
       pageTitle: "비밀번호 변경",
       errorMessage: "비밀번호가 일치하지 않습니다.",

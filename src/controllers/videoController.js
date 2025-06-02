@@ -3,36 +3,20 @@ import Comment from "../models/Comment";
 import User from "../models/User";
 
 export const home = async (req, res) => {
-  let jobInfo;
-  const accessKey = "accessKey";
-  const apiURL = `https://oapi.saramin.co.kr/job-search?access-key=${accessKey}`;
   const videos = await Video.find({})
     .sort({ createdAt: "desc" })
     .populate("owner");
-
-  const fetchSaraminJobs = async () => {
-    try {
-      const response = await fetch(apiURL, {
-        method: "GET",
-        headers: {
-          Accept: "application/json",
-        },
-      });
-
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-
-      const data = await response.json();
-      jobInfo = data;
-    } catch (error) {
-      console.error("API 요청 중 오류 발생:", error.message);
-    }
-  };
-
-  fetchSaraminJobs();
-
-  return res.render("home", { pageTitle: "Home", videos });
+  const noWorkerVideos = videos.filter(
+    (video) => !video.hashtags.includes("#직장인")
+  );
+  const workerVideos = videos.filter((video) =>
+    video.hashtags.includes("#직장인")
+  );
+  return res.render("home", {
+    pageTitle: "Home",
+    noWorkerVideos,
+    workerVideos,
+  });
 };
 
 export const watch = async (req, res) => {
@@ -114,6 +98,7 @@ export const postUpload = async (req, res) => {
     return res.redirect("/");
   } catch (error) {
     console.log(error);
+    req.flash("error", error._message);
     return res.status(400).render("upload", {
       pageTitle: "글쓰기",
       errorMessage: error._message,
@@ -128,6 +113,7 @@ export const deleteVideo = async (req, res) => {
   } = req.session;
   const video = await Video.findById(id);
   if (!video) {
+    req.flash("error", "해당 글을 찾을 수 없습니다.");
     return res
       .status(404)
       .render("404", { pageTitle: "해당 글을 찾을 수 없습니다." });

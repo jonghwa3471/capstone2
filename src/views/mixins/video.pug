@@ -4,14 +4,21 @@ mixin video(video)
       style=`background-image:url(${video.thumbUrl});background-size:cover;background-position:center;`
     )
     .data-wrapper
-      .video-mixin__profile
+      .video-mixin__profile(
+        style="display: flex; flex-direction: column; justify-content: center; align-items: center"
+      )
         if video.owner.avatarUrl
           img.header__avatar(src=`${video.owner.avatarUrl}`)
         else
           span.header__icon 😃
+        span(style="font-size: 12px; color: #1c4ed8; font-weight: 900") #{ video.owner.nickname }
       .video-mixin__data
         span.video-mixin__title #{ video.title }&nbsp;
           span #{ video.owner.name } •&nbsp;
           span.video-mixin__views
             i.fa-regular.fa-eye &nbsp;
-            span #{ video.meta.views }
+            span #{ video.meta.views } &nbsp;
+        h6
+          span(style="font-size: 10px; color: gray") #{ video.createdAt.toLocaleDateString("ko-kr", { weekday: "long", year: "numeric", month: "long", day: "numeric" }) }
+        h6
+          span(style="font-size: 12px; color: #1c4ed8") #{ video.hashtags }

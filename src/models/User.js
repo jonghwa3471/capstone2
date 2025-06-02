@@ -7,7 +7,7 @@ const userSchema = new mongoose.Schema({
   socialOnly: { type: Boolean, default: false },
   id: { type: String, required: true, unique: true },
   password: { type: String },
-  nickname: { type: String, required: true },
+  nickname: { type: String, required: true, maxlength: 6 },
   comments: [{ type: mongoose.Schema.Types.ObjectId, ref: "Comment" }],
   videos: [{ type: mongoose.Schema.Types.ObjectId, ref: "Video" }],
 });

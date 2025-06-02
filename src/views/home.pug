@@ -4,15 +4,14 @@ include mixins/video
 block content
   .main-container
     .video-grid
-      each video in videos
-        +video(video)
+      each noWorkerVideo in noWorkerVideos
+        +video(noWorkerVideo)
       else
         span.empty__message 게시글이 존재하지 않습니다.
   hr(style="border: 5px solid #1c4ed8; width: 90%")
   .main-container
     .video-grid
-      //- each video in videos
-      //-   +video(video)
-      //- else
-      //-   span.empty__message 모집공고가 존재하지 않습니다.
-      span.empty__message 모집공고가 존재하지 않습니다.
+      each workerVideo in workerVideos
+        +video(workerVideo)
+      else
+        span.empty__message 게시글이 존재하지 않습니다.

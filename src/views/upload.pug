@@ -1,13 +1,18 @@
 extends base
 
 block content
-  if errorMessage
-    span= errorMessage
+  //- if errorMessage
+  //-   span= errorMessage
   form(method="POST", enctype="multipart/form-data")
     label(for="thumb") 이미지 업로드
     input#thumb(type="file", accept="image/*", required, name="thumb")
     input(placeholder="제목", required, type="text", name="title", maxlength=80)
-    input(placeholder="태그(쉼표로 구분)", required, type="text", name="hashtags")
+    input(
+      placeholder="해쉬 태그(쉼표로 구분, 직장인은 #직장인을 꼭 넣어주세요)",
+      required,
+      type="text",
+      name="hashtags"
+    )
     textarea.writing(placeholder="내용을 입력하세요.", name="writing")
     input(type="submit", value="등록")
 

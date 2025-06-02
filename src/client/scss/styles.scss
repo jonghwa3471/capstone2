@@ -69,11 +69,11 @@ main {
   animation-delay: 3s;
   &.error,
   &.info {
-    background-color: tomato;
+    background-color: red;
     color: #e7f0fe;
   }
   &.success {
-    background-color: green;
+    background-color: #1c4ed8;
     color: #e7f0fe;
   }
 }
