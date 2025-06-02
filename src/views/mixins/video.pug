@@ -5,7 +5,7 @@ mixin video(video)
     )
     .data-wrapper
       .video-mixin__profile(
-        style="display: flex; flex-direction: column; justify-content: center; align-items: center"
+        style="display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 5px"
       )
         if video.owner.avatarUrl
           img.header__avatar(src=`${video.owner.avatarUrl}`)
