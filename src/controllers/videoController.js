@@ -137,9 +137,21 @@ export const search = async (req, res) => {
       title: {
         $regex: new RegExp(`${keyword}`, "i"),
       },
-    }).populate("owner");
+    })
+      .sort({ createdAt: "desc" })
+      .populate("owner");
   }
-  return res.render("home", { pageTitle: "글 검색", videos });
+  const noWorkerVideos = videos.filter(
+    (video) => !video.hashtags.includes("#직장인")
+  );
+  const workerVideos = videos.filter((video) =>
+    video.hashtags.includes("#직장인")
+  );
+  return res.render("home", {
+    pageTitle: "글 검색",
+    noWorkerVideos,
+    workerVideos,
+  });
 };
 
 export const registerView = async (req, res) => {
